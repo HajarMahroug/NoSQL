@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Historique des Prêts</h2>
+
+{% if current_user.role == 'admin' %}
+<form method="get" action="{{ url_for('historique_prets') }}" class="form-inline mb-3">
+    <div class="form-group mr-2">
+        <label for="username" class="mr-2">Rechercher par nom d'utilisateur :</label>
+        <input type="text" id="username" name="username" value="{{ request.args.get('username', '') }}" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Rechercher</button>
+</form>
+{% endif %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Utilisateur</th>
+            <th>Titre du Livre</th>
+            <th>Date d'Emprunt</th>
+            <th>Date de Retour</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pret in prets %}
+        <tr>
+            <td>{{ pret.username }}</td>
+            <td>{{ pret.livre_titre }}</td>
+            <td>{{ pret.date_emprunt.strftime('%Y-%m-%d') }}</td>
+            <td>{{ pret.date_retour.strftime('%Y-%m-%d') if pret.date_retour else 'Non retourné' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<style>
+    .form-inline {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        font-weight: bold;
+    }
+    .form-control {
+        margin-right: 10px;
+    }
+    .btn {
+        padding: 10px 10px;
+        margin: 10px 5px;
+         
+    }
+    .table {
+        width: 100%;
+        margin: 20px 0;
+    }
+    .table th, .table td {
+        padding: 15px;
+        text-align: left;
+    }
+    .table th {
+        background-color: #f8f9fa;
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f2f2f2;
+    }
+</style>
+{% endblock %}

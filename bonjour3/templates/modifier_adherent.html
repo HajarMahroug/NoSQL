@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Modifier Adhérent</h2>
+<form method="post" class="modifier-adherent-form">
+    <div class="form-group">
+        <label for="username">Nom d'utilisateur:</label>
+        <input type="text" id="username" name="username" value="{{ adherent.username }}">
+    </div>
+    <div class="form-group">
+        <label for="nouveau_role">Nouveau rôle:</label>
+        <input type="text" id="nouveau_role" name="nouveau_role" value="{{ adherent.role }}">
+    </div>
+    <div class="form-group">
+        <label for="ancien_mot_de_passe">Ancien mot de passe:</label>
+        <input type="text" id="ancien_mot_de_passe" name="ancien_mot_de_passe" value="{{ adherent.password }}" readonly>
+    </div>
+    <div class="form-group">
+        <label for="nouveau_mot_de_passe">Nouveau mot de passe:</label>
+        <input type="password" id="nouveau_mot_de_passe" name="nouveau_mot_de_passe">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Modifier</button>
+</form>
+{% endblock %}

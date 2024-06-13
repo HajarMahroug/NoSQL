@@ -1,0 +1,78 @@
+<!-- ajouter_adherent.html -->
+{% extends "base.html" %}
+{% block content %}
+<h2>Ajouter un Adhérent</h2>
+<form method="post" action="{{ url_for('ajouter_adherent') }}" class="ajouter-adherent-form">
+    <div class="form-group">
+        <label for="username">Nom d'utilisateur:</label>
+        <input type="text" id="username" name="username" required>
+    </div>
+    <div class="form-group">
+        <label for="role">Rôle:</label>
+        <select id="role" name="role">
+            <option value="user">Utilisateur</option>
+            <option value="admin">Administrateur</option>
+        </select>
+    </div>
+    <div class="form-group">
+       <label for="password">Mot de passe:</label>
+       <input type="password" id="password" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+</form>
+
+<style>
+    .ajouter-adherent-form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .ajouter-adherent-form .form-group {
+        margin-bottom: 15px;
+    }
+
+    .ajouter-adherent-form label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .ajouter-adherent-form input[type="text"],
+    .ajouter-adherent-form select,
+    .ajouter-adherent-form input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .ajouter-adherent-form .btn {
+        display: inline-block;
+        padding: 10px 15px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .ajouter-adherent-form .btn:hover {
+        background-color: #0056b3;
+    }
+
+    .ajouter-adherent-form .error {
+        color: red;
+        margin-top: 10px;
+    }
+</style>
+{% endblock %}

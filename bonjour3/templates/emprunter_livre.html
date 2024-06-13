@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Emprunter un Livre</h2>
+<form method="post" action="{{ url_for('emprunter_livre') }}" class="emprunter-livre-form">
+    <div class="form-group">
+        <label for="livre_titre">Titre du Livre:</label>
+        <input type="text" id="livre_titre" name="livre_titre" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Emprunter</button>
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+    {% endif %}
+</form>
+
+<style>
+    .emprunter-livre-form {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+
+    .emprunter-livre-form .form-group {
+        margin-bottom: 15px;
+    }
+
+    .emprunter-livre-form label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .emprunter-livre-form input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .emprunter-livre-form .btn {
+        display: inline-block;
+        padding: 10px 15px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .emprunter-livre-form .btn:hover {
+        background-color: #0056b3;
+    }
+
+    .alert {
+        margin-top: 10px;
+    }
+</style>
+{% endblock %}

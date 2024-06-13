@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Modifier un Livre</h2>
+<form method="post" class="form-container">
+    <div class="form-group">
+        <label for="titre">Titre du Livre à modifier:</label>
+        <input type="text" id="titre" name="titre" required class="form-control" value="{{ titre }}" readonly>
+    </div>
+    <div class="form-group">
+        <label for="nouveau_titre">Nouveau Titre:</label>
+        <input type="text" id="nouveau_titre" name="nouveau_titre" class="form-control" value="{{ livre.titre }}">
+    </div>
+    <div class="form-group">
+        <label for="nouveau_genre">Nouveau Genre:</label>
+        <select id="nouveau_genre" name="nouveau_genre" class="form-control" multiple required>
+            <option value="Adventure">Adventure</option>
+            <option value="Anthology">Anthology</option>
+            <option value="Art">Art</option>
+            <option value="Autobiography">Autobiography</option>
+            <option value="Biography">Biography</option>
+            <option value="Business">Business</option>
+            <option value="Children's">Children's</option>
+            <option value="Comics">Comics</option>
+            <option value="Contemporary Romance">Contemporary Romance</option>
+            <option value="Cooking">Cooking</option>
+            <option value="Crafts & Hobbies">Crafts & Hobbies</option>
+            <option value="Crime">Crime</option>
+            <option value="Cyberpunk">Cyberpunk</option>
+            <option value="Drama">Drama</option>
+            <option value="Dystopian">Dystopian</option>
+            <option value="Education">Education</option>
+            <option value="Engineering">Engineering</option>
+            <option value="Epic Fantasy">Epic Fantasy</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Gardening">Gardening</option>
+            <option value="Graphic Novel">Graphic Novel</option>
+            <option value="Health & Wellness">Health & Wellness</option>
+            <option value="Historical Fiction">Historical Fiction</option>
+            <option value="Historical Romance">Historical Romance</option>
+            <option value="Horror">Horror</option>
+            <option value="Law">Law</option>
+            <option value="Literary Fiction">Literary Fiction</option>
+            <option value="Math">Math</option>
+            <option value="Medical">Medical</option>
+            <option value="Memoir">Memoir</option>
+            <option value="Military">Military</option>
+            <option value="Music">Music</option>
+            <option value="Mystery">Mystery</option>
+            <option value="Non-fiction">Non-fiction</option>
+            <option value="Paranormal">Paranormal</option>
+            <option value="Philosophy">Philosophy</option>
+            <option value="Photography">Photography</option>
+            <option value="Poetry">Poetry</option>
+            <option value="Politics">Politics</option>
+            <option value="Psychological">Psychological</option>
+            <option value="Religion">Religion</option>
+            <option value="Romance">Romance</option>
+            <option value="Satire">Satire</option>
+            <option value="Science">Science</option>
+            <option value="Science Fiction">Science Fiction</option>
+            <option value="Self-help">Self-help</option>
+            <option value="Short Stories">Short Stories</option>
+            <option value="Spirituality">Spirituality</option>
+            <option value="Sports">Sports</option>
+            <option value="Steampunk">Steampunk</option>
+            <option value="Technology">Technology</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Travel">Travel</option>
+            <option value="True Crime">True Crime</option>
+            <option value="Urban Fantasy">Urban Fantasy</option>
+            <option value="Western">Western</option>
+            <option value="Young Adult">Young Adult</option>
+        </select>
+
+    </div>
+    <div class="form-group">
+        <label for="nouveau_resume">Nouveau Résumé:</label>
+        <textarea id="nouveau_resume" name="nouveau_resume" class="form-control">{{ livre.resume }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="nouvelle_quantite">Nouvelle Quantité Disponible:</label>
+        <input type="number" id="nouvelle_quantite" name="nouvelle_quantite" class="form-control" min="0" value="{{ livre.quantite_disponible }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Modifier</button>
+</form>
+{% endblock %}

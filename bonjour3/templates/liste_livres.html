@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Liste des Livres</h2>
+<form method="post" class="mb-3">
+    <div class="form-group form-inline">
+            <input type="text" name="recherche" placeholder="Rechercher par titre ou auteur" class="form-control mr-2 mb-2">
+            <button type="submit" class="btn btn-primary mb-2">Rechercher</button>
+    </div>
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>Genre</th>
+            <th>Résumé</th>
+            <th>Quantité Disponible</th>
+            {% if current_user.role == 'admin' %}
+            <th>Actions</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for livre in livres %}
+        <tr>
+            <td>{{ livre.titre }}</td>
+            <td>{{ livre.auteur }}</td>
+            <td>{{ livre.genre }}</td>
+            <td>{{ livre.resume }}</td>
+            <td>{{ livre.quantite_disponible }}</td>
+            {% if current_user.role == 'admin' %}
+            <td>
+                <a href="{{ url_for('modifier_livre', titre=livre.titre) }}" class="btn btn-sm btn-primary">Modifier</a>
+                <form method="post" action="{{ url_for('supprimer_livre', titre=livre.titre) }}" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+                </form>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<style>
+    .form-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .form-control {
+        width: auto;
+    }
+    .table {
+        width: 100%;
+        margin: auto;
+        border-collapse: collapse;
+    }
+    .table th, .table td {
+        padding: 15px;
+        text-align: left;
+    }
+    .table th {
+        background-color: #f8f9fa;
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f2f2f2;
+    }
+    .btn {
+        margin: 5px;
+    }
+</style>
+{% endblock %}
